@@ -8,7 +8,7 @@ import java.util.List;
 public class Airport {
     private int airportCode;
     private String airportName;
-    private List<Flight> flightList = new ArrayList<>();
+    private List<Plane> planeList = new ArrayList<>();
 
     public Airport(int airportCode, String airportName) {
         this.airportCode = airportCode;
@@ -31,15 +31,15 @@ public class Airport {
         this.airportName = airportName;
     }
 
-    public void addFlight(Flight flight) {
-        flightList.add(flight);
+    public void addPlane(Plane plane) {
+        planeList.add(plane);
     }
 
-    public void removeFlight(Flight flight) {
-        flightList.remove(flight);
+    public void removePlane(Plane plane) {
+        planeList.remove(plane);
     }
 
-    public List<Flight> getFlightList() {
-        return flightList;
+    public List<Plane> getPlaneList() {
+        return planeList;
     }
 }

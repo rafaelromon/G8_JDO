@@ -7,32 +7,37 @@ import java.util.List;
 
 @PersistenceCapable
 public class Flight {
+    private Plane plane;
     private int flight_code;
-    private Airline airline; /* Foreign Key */
-    private String departure_airport;
-    private String destination_airport;
     private Date arrival_time;
     private Date arrival_date;
     private Date departure_time;
     private Date departure_date;
-    private int total_time;
-    private int remaining_time;
+    private int remaining_seats;
     private List<Reservation> reservationList = new ArrayList<>();
 
 
-    public Flight(int flight_code, Airline airline, String departure_airport, String destination_airport, Date arrival_time, Date arrival_date, Date departure_time, Date departure_date, int total_time, int remaining_time) {
+    public Flight(Plane plane, int flight_code, Airline airline, String departure_airport, String destination_airport, Date arrival_time, Date arrival_date, Date departure_time, Date departure_date, int total_time, int remaining_seats) {
+        this.plane = plane;
         this.flight_code = flight_code;
-        this.airline = airline;
-        this.departure_airport = departure_airport;
-        this.destination_airport = destination_airport;
         this.arrival_time = arrival_time;
         this.arrival_date = arrival_date;
         this.departure_time = departure_time;
         this.departure_date = departure_date;
-        this.total_time = total_time;
-        this.remaining_time = remaining_time;
+        this.remaining_seats = remaining_seats;
     }
 
+    public Plane getPlane() {
+        return plane;
+    }
+
+    public void setPlane(Plane plane) {
+        this.plane = plane;
+    }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
 
     public int getFlight_code() {
         return flight_code;
@@ -40,31 +45,6 @@ public class Flight {
 
     public void setFlight_code(int flight_code) {
         this.flight_code = flight_code;
-    }
-
-
-    public Airline getAirline() {
-        return airline;
-    }
-
-    public void setAirline(Airline airline) {
-        this.airline = airline;
-    }
-
-    public String getDeparture_airport() {
-        return departure_airport;
-    }
-
-    public void setDeparture_airport(String departure_airport) {
-        this.departure_airport = departure_airport;
-    }
-
-    public String getDestination_airport() {
-        return destination_airport;
-    }
-
-    public void setDestination_airport(String destination_airport) {
-        this.destination_airport = destination_airport;
     }
 
     public Date getArrival_time() {
@@ -99,20 +79,12 @@ public class Flight {
         this.departure_date = departure_date;
     }
 
-    public int getTotal_time() {
-        return total_time;
+    public int getRemaining_seats() {
+        return remaining_seats;
     }
 
-    public void setTotal_time(int total_time) {
-        this.total_time = total_time;
-    }
-
-    public int getRemaining_time() {
-        return remaining_time;
-    }
-
-    public void setRemaining_time(int remaining_time) {
-        this.remaining_time = remaining_time;
+    public void setRemaining_seats(int remaining_seats) {
+        this.remaining_seats = remaining_seats;
     }
 
     public void addReservation(Reservation reservation) {

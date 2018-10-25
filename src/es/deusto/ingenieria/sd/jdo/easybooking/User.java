@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @PersistenceCapable
-public class User {
+public class User extends Person {
     private String email;
     private String authorization_system;
     private String payment_method;
     private String default_airport;
     private List<Reservation> reservationList = new ArrayList<>();
 
-    public User(String email, String authorization_system, String payment_method, String default_airport) {
+    public User(int id, String name, String email, String authorization_system, String payment_method, String default_airport) {
+        super(id, name);
         this.email = email;
         this.authorization_system = authorization_system;
         this.payment_method = payment_method;
