@@ -1,5 +1,8 @@
 package es.deusto.ingenieria.sd.jdo.easybooking;
 
+import javax.jdo.annotations.PersistenceCapable;
+
+@PersistenceCapable
 public class Person {
     private int id;
     private String name;

@@ -1,4 +1,5 @@
-DROP SCHEMA_NAME IF EXISTS easybooking;
+/* DROP SCHEMA IF EXISTS easybooking; */
+DROP SCHEMA_NAME IF EXISTS easybooking; /* MariaDB*/
 DROP USER IF EXISTS 'test'@'%';
 
 CREATE SCHEMA_NAME easybooking;

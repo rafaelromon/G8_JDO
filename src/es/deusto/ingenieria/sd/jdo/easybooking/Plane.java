@@ -1,15 +1,17 @@
 package es.deusto.ingenieria.sd.jdo.easybooking;
 
+import javax.jdo.annotations.PersistenceCapable;
 import java.util.ArrayList;
 import java.util.List;
 
+@PersistenceCapable
 public class Plane {
     private Airline airline;
     private int plane_code;
     private Airport origin_airport;
     private Airport destination_airport;
     private int total_seats;
-    private List<Flight> flightList = new ArrayList<>();
+    private List<Flight> plane_flightList = new ArrayList<>();
 
     public Plane(Airline airline, int plane_code, Airport origin_airport, Airport destination_airport, int total_seats) {
         this.airline = airline;
@@ -60,14 +62,14 @@ public class Plane {
     }
 
     public void addFlight(Flight flight) {
-        flightList.add(flight);
+        plane_flightList.add(flight);
     }
 
     public void removeFlight(Flight flight) {
-        flightList.remove(flight);
+        plane_flightList.remove(flight);
     }
 
-    public List<Flight> getFlightList() {
-        return flightList;
+    public List<Flight> getPlane_flightList() {
+        return plane_flightList;
     }
 }

@@ -14,10 +14,10 @@ public class Flight {
     private Date departure_time;
     private Date departure_date;
     private int remaining_seats;
-    private List<Reservation> reservationList = new ArrayList<>();
+    private List<Reservation> flight_reservationList = new ArrayList<>();
 
 
-    public Flight(Plane plane, int flight_code, Airline airline, String departure_airport, String destination_airport, Date arrival_time, Date arrival_date, Date departure_time, Date departure_date, int total_time, int remaining_seats) {
+    public Flight(Plane plane, int flight_code, Date arrival_time, Date arrival_date, Date departure_time, Date departure_date, int remaining_seats) {
         this.plane = plane;
         this.flight_code = flight_code;
         this.arrival_time = arrival_time;
@@ -35,8 +35,8 @@ public class Flight {
         this.plane = plane;
     }
 
-    public void setReservationList(List<Reservation> reservationList) {
-        this.reservationList = reservationList;
+    public void addReservation(Reservation reservation) {
+        flight_reservationList.add(reservation);
     }
 
     public int getFlight_code() {
@@ -87,15 +87,15 @@ public class Flight {
         this.remaining_seats = remaining_seats;
     }
 
-    public void addReservation(Reservation reservation) {
-        reservationList.add(reservation);
-    }
-
     public void removeReservation(Reservation reservation) {
-        reservationList.remove(reservation);
+        flight_reservationList.remove(reservation);
     }
 
-    public List<Reservation> getReservationList() {
-        return reservationList;
+    public List<Reservation> getFlight_reservationList() {
+        return flight_reservationList;
+    }
+
+    public void setFlight_reservationList(List<Reservation> flight_reservationList) {
+        this.flight_reservationList = flight_reservationList;
     }
 }

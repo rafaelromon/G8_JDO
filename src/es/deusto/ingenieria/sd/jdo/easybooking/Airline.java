@@ -8,7 +8,7 @@ import java.util.List;
 public class Airline {
     private int airline_code;
     private String airline_name;
-    private List<Flight> flightList = new ArrayList<>();
+    private List<Flight> airline_flightList = new ArrayList<>();
 
     public Airline(int airline_code, String airline_name) {
         this.airline_code = airline_code;
@@ -32,14 +32,14 @@ public class Airline {
     }
 
     public void addFlight(Flight flight) {
-        flightList.add(flight);
+        airline_flightList.add(flight);
     }
 
     public void removeFlight(Flight flight) {
-        flightList.remove(flight);
+        airline_flightList.remove(flight);
     }
 
-    public List<Flight> getFlightList() {
-        return flightList;
+    public List<Flight> getAirline_flightList() {
+        return airline_flightList;
     }
 }

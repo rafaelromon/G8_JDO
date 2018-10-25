@@ -10,7 +10,7 @@ public class User extends Person {
     private String authorization_system;
     private String payment_method;
     private String default_airport;
-    private List<Reservation> reservationList = new ArrayList<>();
+    private List<Reservation> user_reservationList = new ArrayList<>();
 
     public User(int id, String name, String email, String authorization_system, String payment_method, String default_airport) {
         super(id, name);
@@ -54,14 +54,14 @@ public class User extends Person {
     }
 
     public void addReservation(Reservation reservation) {
-        reservationList.add(reservation);
+        user_reservationList.add(reservation);
     }
 
     public void removeReservation(Reservation reservation) {
-        reservationList.remove(reservation);
+        user_reservationList.remove(reservation);
     }
 
-    public List<Reservation> getReservationList() {
-        return reservationList;
+    public List<Reservation> getUser_reservationList() {
+        return user_reservationList;
     }
 }
