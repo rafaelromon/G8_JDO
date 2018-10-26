@@ -19,6 +19,9 @@ public class Plane {
         this.origin_airport = origin_airport;
         this.destination_airport = destination_airport;
         this.total_seats = total_seats;
+
+        origin_airport.addPlane(this);
+        destination_airport.addPlane(this);
     }
 
     public Airline getAirline() {

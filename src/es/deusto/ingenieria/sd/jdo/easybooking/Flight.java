@@ -8,6 +8,7 @@ import java.util.List;
 @PersistenceCapable
 public class Flight {
     private Plane plane;
+    private Airline airline;
     private int flight_code;
     private Date arrival_time;
     private Date arrival_date;
@@ -17,14 +18,19 @@ public class Flight {
     private List<Reservation> flight_reservationList = new ArrayList<>();
 
 
-    public Flight(Plane plane, int flight_code, Date arrival_time, Date arrival_date, Date departure_time, Date departure_date, int remaining_seats) {
+    public Flight(Airline airline, Plane plane, int flight_code, Date arrival_time
+            , Date arrival_date, Date departure_time, Date departure_date, int remaining_seats) {
         this.plane = plane;
+        this.airline = airline;
         this.flight_code = flight_code;
         this.arrival_time = arrival_time;
         this.arrival_date = arrival_date;
         this.departure_time = departure_time;
         this.departure_date = departure_date;
         this.remaining_seats = remaining_seats;
+
+        plane.addFlight(this);
+        airline.addFlight(this);
     }
 
     public Plane getPlane() {
@@ -33,6 +39,14 @@ public class Flight {
 
     public void setPlane(Plane plane) {
         this.plane = plane;
+    }
+
+    public Airline getAirline() {
+        return airline;
+    }
+
+    public void setAirline(Airline airline) {
+        this.airline = airline;
     }
 
     public void addReservation(Reservation reservation) {

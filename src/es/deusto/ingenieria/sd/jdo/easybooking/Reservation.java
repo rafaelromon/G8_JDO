@@ -2,7 +2,6 @@ package es.deusto.ingenieria.sd.jdo.easybooking;
 
 import javax.jdo.annotations.PersistenceCapable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @PersistenceCapable
@@ -11,11 +10,22 @@ public class Reservation {
     private User user;
     private Flight flight;
     private List<Person> personList = new ArrayList<>();
+    private Payment payment;
 
-    public Reservation(int reservation_code, Date reservation_date, User user, Flight flight) {
+    public Reservation(int reservation_code, User user, Flight flight) {
         this.reservation_code = reservation_code;
         this.user = user;
         this.flight = flight;
+
+        flight.addReservation(this);
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public int getReservation_code() {
@@ -52,9 +62,5 @@ public class Reservation {
 
     public List<Person> getPersonList() {
         return personList;
-    }
-
-    public void setPersonList(List<Person> personList) {
-        this.personList = personList;
     }
 }
