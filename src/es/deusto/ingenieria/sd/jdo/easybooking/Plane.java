@@ -1,37 +1,30 @@
 package es.deusto.ingenieria.sd.jdo.easybooking;
 
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
 @PersistenceCapable
 public class Plane {
-    private Airline airline;
+    @PrimaryKey
     private int plane_code;
     private Airport origin_airport;
     private Airport destination_airport;
     private int total_seats;
-    private List<Flight> plane_flightList = new ArrayList<>();
+    @Join
+    private List<Flight> flightList = new ArrayList<>();
 
-    public Plane(Airline airline, int plane_code, Airport origin_airport, Airport destination_airport, int total_seats) {
-        this.airline = airline;
+    public Plane(int plane_code, Airport origin_airport, Airport destination_airport, int total_seats) {
         this.plane_code = plane_code;
         this.origin_airport = origin_airport;
         this.destination_airport = destination_airport;
         this.total_seats = total_seats;
 
-        origin_airport.addPlane(this);
-        destination_airport.addPlane(this);
+        origin_airport.addDepartingPlane(this);
+        destination_airport.addArrivingPlane(this);
     }
-
-    public Airline getAirline() {
-        return airline;
-    }
-
-    public void setAirline(Airline airline) {
-        this.airline = airline;
-    }
-
     public int getPlane_code() {
         return plane_code;
     }
@@ -65,14 +58,14 @@ public class Plane {
     }
 
     public void addFlight(Flight flight) {
-        plane_flightList.add(flight);
+        flightList.add(flight);
     }
 
     public void removeFlight(Flight flight) {
-        plane_flightList.remove(flight);
+        flightList.remove(flight);
     }
 
-    public List<Flight> getPlane_flightList() {
-        return plane_flightList;
+    public List<Flight> getFlightList() {
+        return flightList;
     }
 }

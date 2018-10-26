@@ -1,11 +1,13 @@
 package es.deusto.ingenieria.sd.jdo.easybooking;
 
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
 @PersistenceCapable
 public class Reservation {
+    @PrimaryKey
     private int reservation_code;
     private User user;
     private Flight flight;
@@ -17,6 +19,7 @@ public class Reservation {
         this.user = user;
         this.flight = flight;
 
+        user.addReservation(this);
         flight.addReservation(this);
     }
 
@@ -62,5 +65,9 @@ public class Reservation {
 
     public List<Person> getPersonList() {
         return personList;
+    }
+
+    public boolean isPayed() {
+        return payment != null;
     }
 }

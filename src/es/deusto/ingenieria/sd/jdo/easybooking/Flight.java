@@ -1,21 +1,23 @@
 package es.deusto.ingenieria.sd.jdo.easybooking;
 
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @PersistenceCapable
 public class Flight {
+    @PrimaryKey
+    private int flight_code;
     private Plane plane;
     private Airline airline;
-    private int flight_code;
     private Date arrival_time;
     private Date arrival_date;
     private Date departure_time;
     private Date departure_date;
     private int remaining_seats;
-    private List<Reservation> flight_reservationList = new ArrayList<>();
+    private List<Reservation> reservationList = new ArrayList<>();
 
 
     public Flight(Airline airline, Plane plane, int flight_code, Date arrival_time
@@ -50,7 +52,7 @@ public class Flight {
     }
 
     public void addReservation(Reservation reservation) {
-        flight_reservationList.add(reservation);
+        reservationList.add(reservation);
     }
 
     public int getFlight_code() {
@@ -102,14 +104,14 @@ public class Flight {
     }
 
     public void removeReservation(Reservation reservation) {
-        flight_reservationList.remove(reservation);
+        reservationList.remove(reservation);
     }
 
-    public List<Reservation> getFlight_reservationList() {
-        return flight_reservationList;
+    public List<Reservation> getReservationList() {
+        return reservationList;
     }
 
-    public void setFlight_reservationList(List<Reservation> flight_reservationList) {
-        this.flight_reservationList = flight_reservationList;
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
     }
 }

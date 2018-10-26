@@ -1,13 +1,17 @@
 package es.deusto.ingenieria.sd.jdo.easybooking;
 
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
 @PersistenceCapable
 public class Person {
+    @PrimaryKey
     private int id;
     private String name;
+    @Join
     private List<Reservation> seatList = new ArrayList<>();
 
     public Person(int id, String name) {

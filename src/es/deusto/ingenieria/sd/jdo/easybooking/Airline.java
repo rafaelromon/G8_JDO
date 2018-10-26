@@ -1,14 +1,20 @@
 package es.deusto.ingenieria.sd.jdo.easybooking;
 
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
 @PersistenceCapable
 public class Airline {
+    @PrimaryKey
     private int airline_code;
     private String airline_name;
-    private List<Flight> airline_flightList = new ArrayList<>();
+    @Join
+    @Persistent(mappedBy = "airline", dependentElement = "false")
+    private List<Flight> flightList = new ArrayList<>();
 
     public Airline(int airline_code, String airline_name) {
         this.airline_code = airline_code;
@@ -32,14 +38,14 @@ public class Airline {
     }
 
     public void addFlight(Flight flight) {
-        airline_flightList.add(flight);
+        flightList.add(flight);
     }
 
     public void removeFlight(Flight flight) {
-        airline_flightList.remove(flight);
+        flightList.remove(flight);
     }
 
-    public List<Flight> getAirline_flightList() {
-        return airline_flightList;
+    public List<Flight> getFlightList() {
+        return flightList;
     }
 }

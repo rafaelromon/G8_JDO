@@ -1,5 +1,6 @@
 package es.deusto.ingenieria.sd.jdo.easybooking;
 
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,8 @@ public class User extends Person {
     private String authorization_system;
     private String payment_method;
     private String default_airport;
-    private List<Reservation> user_reservationList = new ArrayList<>();
+    @Join
+    private List<Reservation> reservationList = new ArrayList<>();
 
     public User(int id, String name, String email, String authorization_system, String payment_method, String default_airport) {
         super(id, name);
@@ -54,14 +56,14 @@ public class User extends Person {
     }
 
     public void addReservation(Reservation reservation) {
-        user_reservationList.add(reservation);
+        reservationList.add(reservation);
     }
 
     public void removeReservation(Reservation reservation) {
-        user_reservationList.remove(reservation);
+        reservationList.remove(reservation);
     }
 
-    public List<Reservation> getUser_reservationList() {
-        return user_reservationList;
+    public List<Reservation> getReservationList() {
+        return reservationList;
     }
 }
